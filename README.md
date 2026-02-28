@@ -77,3 +77,4 @@ Run commands inside the environment:
 uv run python -c "print('hello')"
 uv run jupyter lab
 ```
+(This readme was created with the help of generative AI)
