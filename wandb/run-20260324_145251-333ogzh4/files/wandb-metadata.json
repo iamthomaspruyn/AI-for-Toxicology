@@ -1,0 +1,37 @@
+{
+  "os": "macOS-15.7.3-arm64-arm-64bit",
+  "python": "CPython 3.11.14",
+  "startedAt": "2026-03-24T18:52:51.801604Z",
+  "program": "/Users/iamthomaspruyn/Documents/PhD/Projects/AI-for-Toxicology/AI-for-Toxicology/PreTrained_VAE.ipynb",
+  "codePath": "/Users/iamthomaspruyn/Documents/PhD/Projects/AI-for-Toxicology/AI-for-Toxicology/PreTrained_VAE.ipynb",
+  "codePathLocal": "PreTrained_VAE.ipynb",
+  "git": {
+    "remote": "https://github.com/iamthomaspruyn/AI-for-Toxicology.git",
+    "commit": "e0314fa6e60299b412ac7c126ee9db73a17e187a"
+  },
+  "email": "tom.pruyn@mail.utoronto.ca",
+  "root": "/Users/iamthomaspruyn/Documents/PhD/Projects/AI-for-Toxicology/AI-for-Toxicology",
+  "host": "Thomass-MacBook-Pro-4.local",
+  "executable": "/Users/iamthomaspruyn/Documents/PhD/Projects/AI-for-Toxicology/AI-for-Toxicology/.venv/bin/python",
+  "cpu_count": 12,
+  "cpu_count_logical": 12,
+  "disk": {
+    "/": {
+      "total": "494384795648",
+      "used": "282942640128"
+    }
+  },
+  "memory": {
+    "total": "25769803776"
+  },
+  "apple": {
+    "name": "Apple M4 Pro",
+    "ecpuCores": 4,
+    "pcpuCores": 8,
+    "gpuCores": 16,
+    "memoryGb": 24,
+    "swapTotalBytes": "7516192768",
+    "ramTotalBytes": "25769803776"
+  },
+  "writerId": "nwdjon1h3ujql035xy3bsdvyjvdjcjvm"
+}
