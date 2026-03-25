@@ -1,0 +1,25 @@
+2026-03-24 18:44:18,337 INFO    MainThread:30590 [wandb_init.py:setup_run_log_directory():717] Logging user logs to /Users/iamthomaspruyn/Documents/PhD/Projects/AI-for-Toxicology/AI-for-Toxicology/wandb/run-20260324_184418-qainy3ut/logs/debug.log
+2026-03-24 18:44:18,337 INFO    MainThread:30590 [wandb_init.py:setup_run_log_directory():718] Logging internal logs to /Users/iamthomaspruyn/Documents/PhD/Projects/AI-for-Toxicology/AI-for-Toxicology/wandb/run-20260324_184418-qainy3ut/logs/debug-internal.log
+2026-03-24 18:44:18,337 INFO    MainThread:30590 [wandb_init.py:monkeypatch_ipython():636] configuring jupyter hooks <wandb.sdk.wandb_init._WandbInit object at 0x398f58210>
+2026-03-24 18:44:18,337 INFO    MainThread:30590 [wandb_init.py:init():844] calling init triggers
+2026-03-24 18:44:18,337 INFO    MainThread:30590 [wandb_init.py:init():849] wandb.init called with sweep_config: {}
+config: {'seed': 42, 'max_len': 120, 'latent_dim': 292, 'epochs': 10, 'batch_size': 128, 'lr': 0.001, 'kl_anneal_epochs': 10, 'free_bits_nats': 0.1, 'vocab_size': 115, 'seq_len': 121, '_wandb': {}}
+2026-03-24 18:44:18,337 INFO    MainThread:30590 [wandb_init.py:init():892] starting backend
+2026-03-24 18:44:18,338 INFO    MainThread:30590 [wandb_init.py:init():895] sending inform_init request
+2026-03-24 18:44:18,340 INFO    MainThread:30590 [wandb_init.py:init():903] backend started and connected
+2026-03-24 18:44:18,342 INFO    MainThread:30590 [wandb_run.py:_label_probe_notebook():1333] probe notebook
+2026-03-24 18:44:18,342 INFO    MainThread:30590 [wandb_init.py:init():973] updated telemetry
+2026-03-24 18:44:18,395 INFO    MainThread:30590 [wandb_init.py:init():997] communicating run to backend with 90.0 second timeout
+2026-03-24 18:44:19,013 INFO    MainThread:30590 [wandb_init.py:init():1042] starting run threads in backend
+2026-03-24 18:44:19,092 INFO    MainThread:30590 [wandb_run.py:_console_start():2524] atexit reg
+2026-03-24 18:44:19,093 INFO    MainThread:30590 [wandb_run.py:_redirect():2373] redirect: wrap_raw
+2026-03-24 18:44:19,093 INFO    MainThread:30590 [wandb_run.py:_redirect():2442] Wrapping output streams.
+2026-03-24 18:44:19,093 INFO    MainThread:30590 [wandb_run.py:_redirect():2465] Redirects installed.
+2026-03-24 18:44:19,093 INFO    MainThread:30590 [wandb_init.py:init():1082] run started, returning control to user process
+2026-03-24 19:49:20,495 INFO    MainThread:30590 [wandb_run.py:_finish():2291] finishing run tom-pruyn-university-of-toronto/ai-for-toxicology/qainy3ut
+2026-03-24 19:49:20,497 INFO    MainThread:30590 [jupyter.py:save_ipynb():362] not saving jupyter notebook
+2026-03-24 19:49:20,497 INFO    MainThread:30590 [wandb_init.py:_jupyter_teardown():621] cleaning up jupyter logic
+2026-03-24 19:49:20,498 INFO    MainThread:30590 [wandb_run.py:_atexit_cleanup():2490] got exitcode: 0
+2026-03-24 19:49:20,498 INFO    MainThread:30590 [wandb_run.py:_restore():2472] restore
+2026-03-24 19:49:20,498 INFO    MainThread:30590 [wandb_run.py:_restore():2478] restore done
+2026-03-24 19:49:21,898 INFO    MainThread:30590 [wandb_run.py:_footer_sync_info():3868] logging synced files
