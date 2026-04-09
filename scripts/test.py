@@ -17,6 +17,7 @@ if str(SRC_ROOT) not in sys.path:
 from ai_for_toxicology.config import (  # noqa: E402
     DEFAULT_BATCH_SIZE,
     DEFAULT_CHECKPOINT_PATH,
+    DEFAULT_DROPOUT,
     DEFAULT_TEST_PATH,
     DEFAULT_TRAIN_PATH,
     DEFAULT_VAL_PATH,
@@ -61,7 +62,11 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = torch.device(
+        "cuda"
+        if torch.cuda.is_available()
+        else "mps" if torch.backends.mps.is_available() else "cpu"
+    )
 
     ckpt, meta = load_checkpoint_meta(args.checkpoint)
 
@@ -78,7 +83,7 @@ def main() -> None:
         seq_len=meta.seq_len,
         latent_dim=meta.latent_dim,
         num_tasks=meta.num_tasks,
-        dropout=0.30,
+        dropout=DEFAULT_DROPOUT,
     ).to(device)
     model.load_state_dict(ckpt["model_state_dict"], strict=True)
 

@@ -54,14 +54,24 @@ Notebook outputs are intentionally preserved to show training traces and results
 
 ```bash
 uv run python scripts/train.py \
-  --checkpoint artifacts/end_to_end_checkpoints/e2evae_full_seqconv_ce_phase2_adaptive_best.pt \
-  --train-csv data/Train/tox21_train_clean.csv \
-  --val-csv data/Val/tox21_val_clean.csv \
-  --epochs 5 \
+  --chembl-csv data/Train/chembl_clean.csv \
+  --zinc-csv data/Train/zinc250k_clean.csv \
+  --tox21-train-csv data/Train/tox21_train_clean.csv \
+  --tox21-val-csv data/Val/tox21_val_clean.csv \
+  --tox21-test-csv data/Test/tox21_test_clean.csv \
+  --checkpoint-dir artifacts/end_to_end_checkpoints \
+  --checkpoint-stem e2evae_full_seqconv_ce \
+  --phase1-epochs 90 \
+  --warmup-epochs 15 \
+  --phase2-epochs 80 \
   --batch-size 128 \
-  --lr 1e-4 \
-  --checkpoint-out artifacts/end_to_end_checkpoints/submission_train_best.pt
+  --metrics-out reports/phase_training_test_metrics.json
 ```
+
+Training follows the same staged process as `Pretrained_VAE_EndtoEnd_attempt_2.ipynb`:
+1. Phase 1 pretraining (reconstruction/KL objective on ChemBL + ZINC).
+2. Phase 2 Stage A warmup (prediction head only, base frozen).
+3. Phase 2 Stage B adaptive fine-tuning (full unfreeze with differential learning rates).
 
 ### Evaluate
 
@@ -75,7 +85,7 @@ uv run python scripts/test.py \
 ```
 
 ## Expected Outputs
-- Training checkpoint file from `scripts/train.py`.
+- Phase checkpoints from `scripts/train.py` (e.g., `_phase1_best.pt`, `_phase2_warmup_best.pt`, `_phase2_adaptive_best.pt`).
 - Metrics CSV and prediction CSV from `scripts/test.py`.
 - Notebook outputs include training curves/tables used in the report.
 

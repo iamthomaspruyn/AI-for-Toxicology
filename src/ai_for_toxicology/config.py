@@ -19,18 +19,22 @@ TOX21_TASKS = [
     "SR-p53",
 ]
 
-DEFAULT_TRAIN_PATH = Path("data/Train/tox21_train_clean.csv")
-DEFAULT_VAL_PATH = Path("data/Val/tox21_val_clean.csv")
-DEFAULT_TEST_PATH = Path("data/Test/tox21_test_clean.csv")
+DEFAULT_DATA_ROOT = Path("data")
+DEFAULT_CHEMBL_PATH = DEFAULT_DATA_ROOT / "Train" / "chembl_clean.csv"
+DEFAULT_ZINC_PATH = DEFAULT_DATA_ROOT / "Train" / "zinc250k_clean.csv"
+DEFAULT_TRAIN_PATH = DEFAULT_DATA_ROOT / "Train" / "tox21_train_clean.csv"
+DEFAULT_VAL_PATH = DEFAULT_DATA_ROOT / "Val" / "tox21_val_clean.csv"
+DEFAULT_TEST_PATH = DEFAULT_DATA_ROOT / "Test" / "tox21_test_clean.csv"
 DEFAULT_CHECKPOINT_PATH = Path(
     "artifacts/end_to_end_checkpoints/e2evae_full_seqconv_ce_phase2_adaptive_best.pt"
 )
 
+DEFAULT_MAX_LEN = 120
 DEFAULT_BATCH_SIZE = 128
 DEFAULT_LR = 1e-4
 DEFAULT_WEIGHT_DECAY = 1e-4
 DEFAULT_MAX_EPOCHS = 10
 DEFAULT_KL_ANNEAL_EPOCHS = 10
 DEFAULT_SEED = 42
-DEFAULT_DROPOUT = 0.30
+DEFAULT_DROPOUT = 0.10
 DEFAULT_FOCAL_GAMMA = 4.0
