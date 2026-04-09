@@ -24,3 +24,7 @@ ENV/
 
 # Jupyter
 .ipynb_checkpoints/
+
+# Experiment/runtime outputs
+wandb/
+reports/

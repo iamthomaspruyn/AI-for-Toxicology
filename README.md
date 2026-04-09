@@ -1,80 +1,84 @@
-## AI-for-Toxicology
+# AI-for-Toxicology (Course Project Submission)
 
-Toxicity Prediction using Latent Molecular Representation.
+Toxicity prediction using latent molecular representations learned from SELFIES with a VAE-based model and a descriptor-based XGBoost baseline.
 
-- **Team**: AI for Toxicology (AIT) — Mohammad Taha, Thomas Pruyn, Erin Wong
-- **Target venue (intended)**: ICLR workshop
+## Team
+- Mohammad Taha
+- Thomas Pruyn
+- Erin Wong
 
-### Project overview
+## Submission Contents
 
-Chemical safety evaluation is difficult to scale: tens of thousands of chemicals exist, exposures are often to mixtures, and traditional animal testing raises ethical and practical constraints. This project explores **data-driven toxicity screening** using the **Tox21** in‑vitro assay data as a human-relevant, scalable alternative.
+### Notebooks
+- `Latent Analysis & Ablation Study_updated.ipynb`
+- `PreTrained_VAE_Optimization_Analysis.ipynb`
+- `Pretrained_VAE_EndtoEnd_attempt_2.ipynb`
+- `Pretrained_VAE_EndtoEnd_attempt_2_latentanalysis.ipynb`
+- `final_results.ipynb`
+- `XGBoost_Prediction.ipynb`
 
-Our core idea is to learn a **latent representation of molecules** from SMILES strings using a **variational autoencoder (VAE)**, then use that latent representation for **multi-label toxicity prediction** across 12 Tox21 assay endpoints.
+### Model checkpoints
+- `artifacts/end_to_end_checkpoints/e2evae_full_seqconv_ce_phase1_best.pt`
+- `artifacts/end_to_end_checkpoints/e2evae_full_seqconv_ce_phase2_adaptive_best.pt`
 
-### Goals / conditions of success
+### Python scripts (minimal modular implementation)
+- `src/ai_for_toxicology/model.py`: VAE + predictor architecture
+- `src/ai_for_toxicology/data.py`: data loading and SELFIES/token alignment
+- `src/ai_for_toxicology/train.py`: training loop (reconstruction + KL + masked BCE)
+- `src/ai_for_toxicology/test.py`: evaluation metrics and export helpers
+- `scripts/train.py`: CLI entrypoint for model training
+- `scripts/test.py`: CLI entrypoint for checkpoint evaluation
 
-- **Latent space quality**: compounds with similar toxicity labels cluster in the learned latent space (organized representation).
-- **Predictive performance**: classifiers trained on VAE latents achieve **AUC-ROC comparable** to strong baselines using conventional featurization and to prior work.
+## Environment Setup
 
-### Data
-
-- **Source**: Tox21 (Toxicology in the 21st Century)
-- **Benchmark**: DeepChem Tox21 benchmark (MoleculeNet)
-- **Inputs**: SMILES strings (convertible to molecular graphs, descriptors, fingerprints, or treated as text)
-- **Outputs**: 12 binary labels (active/inactive) for selected nuclear receptor and stress-response pathways (multi-label classification)
-- **Note**: label distribution is imbalanced
-
-### Modeling plan (work in progress)
-
-- **Representation learning**: SMILES-to-SMILES VAE with an encoder/decoder suitable for sequence data (e.g., RNN-based).
-- **Downstream prediction**: train a multi-label classifier (e.g., random forest or neural network) on the VAE latent vectors.
-- **Training objectives**:
-  - reconstruction loss (character-level cross-entropy over SMILES)
-  - KL divergence (VAE regularization)
-  - multi-label binary cross-entropy (classification)
-
-### Baselines
-
-- Random forest trained on conventional SMILES featurizations, e.g.:
-  - RDKit molecular descriptors
-  - Morgan fingerprints
-
-### Evaluation plan
-
-- **Metrics**: AUC-ROC, F1-score, accuracy; potentially Hamming loss and exact match ratio (EMR) for multi-label settings.
-- **Splits**: random split and stratified split (to study effects of imbalance).
-
-### Stretch goals
-
-- Latent space exploration for molecule discovery targeting specific pathways
-- Uncertainty estimation
-- Contrastive learning
-- Out-of-distribution (OOD) studies
-
-### Repo status
-
-This repository is currently **under active development**; the proposal describes the intended methods and evaluation plan. Code, experiments, and results will be added iteratively.
-
-### Setup (uv)
-
-This repo uses `uv` for Python and dependency management.
+This repo uses `uv`.
 
 ```bash
 uv venv
 uv sync
 ```
 
-Add packages when you need them (examples):
+## Running the Notebooks
+
+Launch Jupyter and open any notebook in the submission set:
 
 ```bash
-uv add numpy pandas scikit-learn matplotlib seaborn tqdm
-uv add jupyterlab ipykernel
-```
-
-Run commands inside the environment:
-
-```bash
-uv run python -c "print('hello')"
 uv run jupyter lab
 ```
-(This readme was created with the help of generative AI)
+
+Notebook outputs are intentionally preserved to show training traces and results.
+
+## Running the Python Pipeline
+
+### Train
+
+```bash
+uv run python scripts/train.py \
+  --checkpoint artifacts/end_to_end_checkpoints/e2evae_full_seqconv_ce_phase2_adaptive_best.pt \
+  --train-csv data/Train/tox21_train_clean.csv \
+  --val-csv data/Val/tox21_val_clean.csv \
+  --epochs 5 \
+  --batch-size 128 \
+  --lr 1e-4 \
+  --checkpoint-out artifacts/end_to_end_checkpoints/submission_train_best.pt
+```
+
+### Evaluate
+
+```bash
+uv run python scripts/test.py \
+  --checkpoint artifacts/end_to_end_checkpoints/e2evae_full_seqconv_ce_phase2_adaptive_best.pt \
+  --split test \
+  --test-csv data/Test/tox21_test_clean.csv \
+  --metrics-out reports/submission_metrics.csv \
+  --predictions-out reports/submission_predictions.csv
+```
+
+## Expected Outputs
+- Training checkpoint file from `scripts/train.py`.
+- Metrics CSV and prediction CSV from `scripts/test.py`.
+- Notebook outputs include training curves/tables used in the report.
+
+## AI Disclosure
+
+AI tools were used as coding assistance for formatting, refactoring support, and documentation drafting. All model design, experiment choices, and final validation decisions were reviewed and controlled by the project team.
