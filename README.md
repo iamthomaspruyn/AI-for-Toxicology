@@ -16,6 +16,7 @@ Toxicity prediction using latent molecular representations learned from SELFIES 
 - `Latent_Analysis_and_Generative_Capability.ipynb`
 - `Cross_Validation_Results.ipynb`
 - `XGBoost_Prediction.ipynb`
+- `Exploratory_Data_Analysis.ipynb`
 
 ### Model checkpoints
 - `artifacts/end_to_end_checkpoints/Phase1_pretrained_model.pt`
