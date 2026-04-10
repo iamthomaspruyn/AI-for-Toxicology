@@ -91,4 +91,4 @@ uv run python scripts/test.py \
 
 ## AI Disclosure
 
-AI tools were used as coding assistance for formatting, refactoring support, and documentation drafting. All model design, experiment choices, and final validation decisions were reviewed and controlled by the project team.
+AI tools were used as coding assistance for formatting, refactoring support, and documentation drafting. All initial code implementations, model design, experiment choices, and final validation decisions were human-made by the project team.
